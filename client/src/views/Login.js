@@ -3,13 +3,14 @@ import Avatar from '@material-ui/core/Avatar';
 import Button from '@material-ui/core/Button';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import TextField from '@material-ui/core/TextField';
-import Link from '@material-ui/core/Link';
 import Paper from '@material-ui/core/Paper';
-import Box from '@material-ui/core/Box';
 import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import Loading from '../components/LoadingAnimation';
+import axios from '../config/axios';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const formularioVacio = {
     email: '',
@@ -31,11 +32,55 @@ export default function Login() {
         e.preventDefault();
         setIsLoading(true)
 
-        // Cosas de autenticación
+        axios.post('/login', formulario).then(res => {
+            setIsLoading(false)
+            const result = res.data;
+            console.log(result);
+
+            if(result.message === 'Success') {
+                // Credenciales correctas
+                toast.success('Todo bien.', {
+                    position: "top-right",
+                    autoClose: 5000,
+                    hideProgressBar: false,
+                    closeOnClick: true,
+                    pauseOnHover: true,
+                    draggable: true,
+                    progress: undefined,
+                });
+            }
+            else {
+                // Credenciales incorrectas
+                toast.error('Email o contraseña incorrectos.', {
+                    position: "top-right",
+                    autoClose: 5000,
+                    hideProgressBar: false,
+                    closeOnClick: true,
+                    pauseOnHover: true,
+                    draggable: true,
+                    progress: undefined,
+                });
+            }
+        })
+        .catch(err => {
+            setIsLoading(false);
+            console.log(err);
+        })
     }
 
     return (
         <Grid container className={classes.root}>
+            <ToastContainer
+                position="top-cen"
+                autoClose={4000}
+                hideProgressBar={false}
+                newestOnTop={false}
+                closeOnClick
+                rtl={false}
+                pauseOnFocusLoss
+                draggable
+                pauseOnHover
+            />
             <CssBaseline />
             <Grid item xs={false} sm={4} md={7} className={classes.image} />
             <Grid item xs={12} sm={8} md={5} component={Paper} elevation={6} square>
