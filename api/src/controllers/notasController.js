@@ -1,4 +1,4 @@
-const connection = require('../configs/connection')
+const connection = require('../config/connection');
 
 exports.getAllNotes = (req, res) => {
     const sql = "SELECT * FROM viewNotas"

@@ -140,7 +140,7 @@ function Drawer({ authState, children, title }) {
             <ListItemText primary="Expedientes" />
           </ListItem>
 
-          <ListItem button component={Link} to="/notes">
+          <ListItem button component={Link} to="/notas">
             <ListItemIcon>
               <NewReleasesIcon style={{ color: "#fff" }} />
             </ListItemIcon>
