@@ -1,6 +1,6 @@
-const connection = require('../configs/connection')
+const connection = require('../config/connection');
 
-exports.loginUser = (req, res) => {
+exports.login = (req, res) => {
     const { email, password } = req.body;
     const sql = 'SELECT * FROM users WHERE email = ? AND password = ?'
 
