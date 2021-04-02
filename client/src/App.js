@@ -20,6 +20,10 @@ function App() {
           <Route path='/notas'>
             <Notas />
           </Route>          
+
+          <Route path='/'>
+            <Login />
+          </Route>
         </Switch>
       </div>
     </Router>

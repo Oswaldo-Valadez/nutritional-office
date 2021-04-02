@@ -11,6 +11,7 @@ import Loading from '../components/LoadingAnimation';
 import axios from '../config/axios';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import { useHistory } from 'react-router-dom';
 
 const formularioVacio = {
     email: '',
@@ -19,6 +20,7 @@ const formularioVacio = {
 
 export default function Login() {
     const classes = useStyles();
+    const history = useHistory();
 
     const [formulario, setFormulario] = useState(formularioVacio);
     const [isLoading, setIsLoading] = useState(false);
@@ -39,15 +41,7 @@ export default function Login() {
 
             if(result.message === 'Success') {
                 // Credenciales correctas
-                toast.success('Todo bien.', {
-                    position: "top-right",
-                    autoClose: 5000,
-                    hideProgressBar: false,
-                    closeOnClick: true,
-                    pauseOnHover: true,
-                    draggable: true,
-                    progress: undefined,
-                });
+                history.push('/notas') // Se redirecciona a esta página
             }
             else {
                 // Credenciales incorrectas
