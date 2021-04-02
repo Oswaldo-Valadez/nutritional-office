@@ -1,5 +1,5 @@
 const express = require('express');
-const { getAllNotes } = require('../controllers/notasController');
+const { getAllNotes, getNote } = require('../controllers/notasController');
 const router = express.Router();
 
 const { loginUser } = require('../controllers/userController');
@@ -9,5 +9,6 @@ router.route('/login').post(loginUser)
 
 // Notas
 router.route('/notas').get(getAllNotes)
+router.route('/notas/:id_nota').get(getNote)
 
 module.exports = router;
