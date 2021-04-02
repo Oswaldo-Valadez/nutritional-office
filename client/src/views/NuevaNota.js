@@ -1,93 +1,164 @@
-import { Box, Button, Card, CardContent, Container, Divider, Grid, Paper, TextField, Typography } from '@material-ui/core'
-import React from 'react'
+import { Box, Breadcrumbs, Button, Link, Container, Divider, Grid, Paper, TextField, Typography } from '@material-ui/core'
+import React, { useEffect, useState } from 'react'
 import '../App.css'
+import { calcICC, calcIMC } from '../utils/functions';
+
+const formularioVacio = {
+    paciente: '',
+    peso: '',
+    talla: '',
+    cintura: '',
+    cadera: '',
+    presionAlta: '',
+    presionBaja: '',
+    IMC: {},
+    ICC: {},
+    anotaciones: '',
+}
 
 function NuevaNota() {
+    const [formulario, setFormulario] = useState(formularioVacio);
+
+    useEffect(() => {
+
+    }, [formulario.paciente])
+
+    useEffect(() => {
+        if (formulario.peso === '' || formulario.peso <= 0 || formulario.talla === '' || formulario.talla <= 0) {
+            setFormulario({ ...formulario, IMC: {} })
+        }
+        else {
+            setFormulario({ ...formulario, IMC: calcIMC(formulario.peso, formulario.talla) })
+        }
+    }, [formulario.peso, formulario.talla])
+
+    useEffect(() => {
+        if (formulario.cintura === '' || formulario.cintura <= 0 || formulario.cadera === '' || formulario.cadera <= 0) {
+            setFormulario({ ...formulario, ICC: {} })
+        }
+        else {
+            setFormulario({ ...formulario, ICC: calcICC(0, formulario.cintura, formulario.cadera) })
+        }
+    }, [formulario.cintura, formulario.cadera])
+
+    const handleChange = e => {
+        const { name, value } = e.target;
+        setFormulario({ ...formulario, [name]: value });
+    }
+
     return (
         <Container style={{ marginTop: 20 }}>
+            <Breadcrumbs aria-label="breadcrumb" style={{ marginBottom: 20 }}>
+                <Link color="inherit" href="/" >
+                    Inicio
+                </Link>
+                <Link color="inherit" href="/notas" >
+                    Notas de visita
+                </Link>
+                <Typography color="textPrimary">Nueva nota de visita</Typography>
+            </Breadcrumbs>
+
             <Grid container spacing={2}>
                 <Grid item sm={9}>
                     <Paper elevation={3} style={{ padding: 15 }} >
-                        <Typography variant='h5' paragraph >Nueva nota de visita</Typography>
                         <Box display='flex'>
                             <Box flexGrow={1}>
-                                <Typography variant='h6'>Nombre del paciente</Typography>
+                                <Typography variant='h5' paragraph >Nueva nota de visita</Typography>
                             </Box>
                             <Box>
-                                <Typography variant='h6' paragraph>01/04/2021</Typography>
+                                <Typography variant='h6' paragraph>{new Date().toLocaleDateString('es-MX')}</Typography>
                             </Box>
                         </Box>
+                        <Divider style={{ marginBottom: 20 }} />
                         <form noValidate >
                             <Grid container spacing={2} >
+                                <Grid item xs={12}>
+                                    <TextField
+                                        variant="outlined"
+                                        fullWidth
+                                        label="Paciente"
+                                        name="paciente"
+                                        select
+                                        value={formulario.paciente}
+                                        onChange={handleChange}
+                                    />
+                                </Grid>
                                 <Grid item xs={12} sm={6}>
                                     <TextField
                                         variant="outlined"
                                         fullWidth
-                                        id="lastName"
                                         label="Peso actual(Kg)"
-                                        name="lastName"
+                                        name="peso"
+                                        value={formulario.peso}
+                                        onChange={handleChange}
                                     />
                                 </Grid>
                                 <Grid item xs={12} sm={6}>
                                     <TextField
                                         variant="outlined"
                                         fullWidth
-                                        id="lastName"
                                         label="Talla(m)"
-                                        name="lastName"
+                                        name="talla"
+                                        value={formulario.talla}
+                                        onChange={handleChange}
                                     />
                                 </Grid>
                                 <Grid item xs={12} sm={6}>
                                     <TextField
                                         variant="outlined"
                                         fullWidth
-                                        id="lastName"
                                         label="Cintura(cm)"
-                                        name="lastName"
+                                        name="cintura"
+                                        value={formulario.cintura}
+                                        onChange={handleChange}
                                     />
                                 </Grid>
                                 <Grid item xs={12} sm={6}>
                                     <TextField
                                         variant="outlined"
                                         fullWidth
-                                        id="lastName"
                                         label="Cadera(cm)"
-                                        name="lastName"
+                                        name="cadera"
+                                        value={formulario.cadera}
+                                        onChange={handleChange}
                                     />
                                 </Grid>
                                 <Grid item xs={12} sm={6}>
                                     <TextField
                                         variant="outlined"
                                         fullWidth
-                                        id="lastName"
                                         label="Presión arterial alta"
-                                        name="lastName"
+                                        name="presionAlta"
+                                        value={formulario.presionAlta}
+                                        onChange={handleChange}
                                     />
                                 </Grid>
                                 <Grid item xs={12} sm={6}>
                                     <TextField
                                         variant="outlined"
                                         fullWidth
-                                        id="lastName"
                                         label="Presión arterial baja"
-                                        name="lastName"
+                                        name="presionBaja"
+                                        value={formulario.presionBaja}
+                                        onChange={handleChange}
                                     />
                                 </Grid>
                                 <Grid item xs={12} sm={6}>
-                                    <Typography variant='h6'>IMC:</Typography>
+                                    <Typography variant='h6'>IMC: {formulario.IMC.imc} - {formulario.IMC.resultado}</Typography>
                                 </Grid>
                                 <Grid item xs={12} sm={6}>
-                                    <Typography variant='h6'>ICC:</Typography>
+                                    <Typography variant='h6'>ICC: {formulario.ICC.icc} - {formulario.ICC.resultado}</Typography>
                                 </Grid>
                                 <Grid item xs={12}>
                                     <TextField
                                         variant='outlined'
                                         fullWidth
-                                        id="lastName"
                                         label="Anotaciones"
-                                        name="lastName"
+                                        name="anotaciones"
                                         multiline
                                         rows={3}
+                                        value={formulario.anotaciones}
+                                        onChange={handleChange}
                                     />
                                 </Grid>
                                 <Button

@@ -13,13 +13,13 @@ function App() {
             <Login />
           </Route>
 
-          <Route path='/notas'>
-            <Notas />
-          </Route>
-
-          <Route path='/nuevaNota'>
+          <Route path='/notas/nuevaNota'>
             <NuevaNota />
           </Route>
+
+          <Route path='/notas'>
+            <Notas />
+          </Route>          
         </Switch>
       </div>
     </Router>
