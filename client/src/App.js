@@ -7,6 +7,9 @@ import Expedients from "./views/expedients/Expedients";
 import Expedient from "./views/expedients/Expedient";
 import CreateExpedient from "./views/expedients/CreateExpedient";
 
+import Notas from './views/Notas';
+import NuevaNota from './views/NuevaNota';
+
 //Auth
 import Login from "./views/Login";
 
@@ -29,6 +32,20 @@ function App() {
           exact
           component={Expedients}
           path="/expedients"
+        />
+
+        <ProtectedRoute
+          authState={[isAuth, setIsAuth]}
+          exact
+          component={NuevaNota}        
+          path='/notas/nuevaNota'
+        />
+
+        <ProtectedRoute
+          authState={[isAuth, setIsAuth]}
+          exact
+          component={Notas}        
+          path='/notas'
         />
 
         <ProtectedRoute
