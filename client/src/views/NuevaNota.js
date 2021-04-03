@@ -105,112 +105,101 @@ function NuevaNota() {
               </Box>
             </Box>
             <Divider style={{ marginBottom: 20 }} />
-            <form noValidate>
-              <Grid container spacing={2}>
-                <Grid item xs={12}>
-                  <TextField
-                    variant="outlined"
-                    fullWidth
-                    label="Paciente"
-                    name="paciente"
-                    select
-                    value={formulario.paciente}
-                    onChange={handleChange}
-                  />
-                </Grid>
-                <Grid item xs={12} sm={6}>
-                  <TextField
-                    variant="outlined"
-                    fullWidth
-                    label="Peso actual(Kg)"
-                    name="peso"
-                    value={formulario.peso}
-                    onChange={handleChange}
-                  />
-                </Grid>
-                <Grid item xs={12} sm={6}>
-                  <TextField
-                    variant="outlined"
-                    fullWidth
-                    label="Talla(m)"
-                    name="talla"
-                    value={formulario.talla}
-                    onChange={handleChange}
-                  />
-                </Grid>
-                <Grid item xs={12} sm={6}>
-                  <TextField
-                    variant="outlined"
-                    fullWidth
-                    label="Cintura(cm)"
-                    name="cintura"
-                    value={formulario.cintura}
-                    onChange={handleChange}
-                  />
-                </Grid>
-                <Grid item xs={12} sm={6}>
-                  <TextField
-                    variant="outlined"
-                    fullWidth
-                    label="Cadera(cm)"
-                    name="cadera"
-                    value={formulario.cadera}
-                    onChange={handleChange}
-                  />
-                </Grid>
-                <Grid item xs={12} sm={6}>
-                  <TextField
-                    variant="outlined"
-                    fullWidth
-                    label="Presión arterial alta"
-                    name="presionAlta"
-                    value={formulario.presionAlta}
-                    onChange={handleChange}
-                  />
-                </Grid>
-                <Grid item xs={12} sm={6}>
-                  <TextField
-                    variant="outlined"
-                    fullWidth
-                    label="Presión arterial baja"
-                    name="presionBaja"
-                    value={formulario.presionBaja}
-                    onChange={handleChange}
-                  />
-                </Grid>
-                <Grid item xs={12} sm={6}>
-                  <Typography variant="h6">
-                    IMC: {formulario.IMC.imc} - {formulario.IMC.resultado}
-                  </Typography>
-                </Grid>
-                <Grid item xs={12} sm={6}>
-                  <Typography variant="h6">
-                    ICC: {formulario.ICC.icc} - {formulario.ICC.resultado}
-                  </Typography>
-                </Grid>
-                <Grid item xs={12}>
-                  <TextField
-                    variant="outlined"
-                    fullWidth
-                    label="Anotaciones"
-                    name="anotaciones"
-                    multiline
-                    rows={3}
-                    value={formulario.anotaciones}
-                    onChange={handleChange}
-                  />
-                </Grid>
-                <Button
-                  type="submit"
+            <Grid container spacing={2}>
+              <Grid item xs={12}>
+                <TextField
+                  variant="outlined"
                   fullWidth
-                  variant="contained"
-                  color="primary"
-                  style={{ marginTop: 15, marginBottom: 10 }}
-                >
-                  Aceptar
-                </Button>
+                  label="Paciente"
+                  name="paciente"
+                  select
+                  value={formulario.paciente}
+                  onChange={handleChange}
+                />
               </Grid>
-            </form>
+              <Grid item xs={12} sm={6}>
+                <TextField
+                  variant="outlined"
+                  fullWidth
+                  label="Peso actual(Kg)"
+                  name="peso"
+                  value={formulario.peso}
+                  onChange={handleChange}
+                />
+              </Grid>
+              <Grid item xs={12} sm={6}>
+                <TextField
+                  variant="outlined"
+                  fullWidth
+                  label="Talla(m)"
+                  name="talla"
+                  value={formulario.talla}
+                  onChange={handleChange}
+                />
+              </Grid>
+              <Grid item xs={12} sm={6}>
+                <TextField
+                  variant="outlined"
+                  fullWidth
+                  label="Cintura(cm)"
+                  name="cintura"
+                  value={formulario.cintura}
+                  onChange={handleChange}
+                />
+              </Grid>
+              <Grid item xs={12} sm={6}>
+                <TextField
+                  variant="outlined"
+                  fullWidth
+                  label="Cadera(cm)"
+                  name="cadera"
+                  value={formulario.cadera}
+                  onChange={handleChange}
+                />
+              </Grid>
+              <Grid item xs={12} sm={6}>
+                <TextField
+                  variant="outlined"
+                  fullWidth
+                  label="Presión arterial alta"
+                  name="presionAlta"
+                  value={formulario.presionAlta}
+                  onChange={handleChange}
+                />
+              </Grid>
+              <Grid item xs={12} sm={6}>
+                <TextField
+                  variant="outlined"
+                  fullWidth
+                  label="Presión arterial baja"
+                  name="presionBaja"
+                  value={formulario.presionBaja}
+                  onChange={handleChange}
+                />
+              </Grid>
+              <Grid item xs={12} sm={6}>
+                <Typography variant="h6">
+                  IMC: {formulario.IMC.imc} - {formulario.IMC.resultado}
+                </Typography>
+              </Grid>
+              <Grid item xs={12} sm={6}>
+                <Typography variant="h6">
+                  ICC: {formulario.ICC.icc} - {formulario.ICC.resultado}
+                </Typography>
+              </Grid>
+              <Grid item xs={12}>
+                <TextField
+                  variant="outlined"
+                  fullWidth
+                  label="Anotaciones"
+                  name="anotaciones"
+                  multiline
+                  rows={3}
+                  value={formulario.anotaciones}
+                  onChange={handleChange}
+                />
+              </Grid>
+            </Grid>
           </Paper>
         </Grid>
         <Grid item sm={4}>
