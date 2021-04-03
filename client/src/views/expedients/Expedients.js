@@ -247,7 +247,7 @@ const CardExpedient = ({
         }
         action={
           <IconButton
-            onClick={() => history.push("/notas/nuevaNota")}
+            onClick={() => history.push("/notas/nuevaNota/" + id_expedient)}
             aria-label="Crear nota"
           >
             <AddIcon />

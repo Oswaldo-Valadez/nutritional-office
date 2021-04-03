@@ -22,10 +22,50 @@ function Datatable({ data, title, onRowClick }) {
     return rows;
   };
 
-  const getColumns = () => {
-    if (data[0]) return Object.keys(data[0]);
-    else return ["Sin información"];
-  };
+  const columns = [
+    {
+      name: "id_nota",
+      label: "ID Nota",
+      options: {
+        filter: true,
+        sort: true,
+      }
+    },
+    {
+      name: "nombre",
+      label: "Nombre Completo",
+      options: {
+        filter: true,
+        sort: false,
+      }
+    },
+    {
+      name: "fecha",
+      label: "Fecha",
+      options: {
+        filter: true,
+        sort: false,
+      }
+    },
+    {
+      name: "idExpediente",
+      label: "ID Expediente",
+      options: {
+        filter: true,
+        sort: false,
+        display: false
+      }
+    },
+    {
+      name: "genero",
+      label: "Género",
+      options: {
+        filter: true,
+        sort: false,
+        display: false
+      }
+    },
+  ];
 
   const opciones = () => {
     return {
@@ -81,7 +121,7 @@ function Datatable({ data, title, onRowClick }) {
           <MUIDataTable
             title={title}
             data={getRows()}
-            columns={getColumns()}
+            columns={columns}
             options={opciones()}
           />
         </MuiThemeProvider>
