@@ -77,19 +77,6 @@ function Notas() {
       </Grid>
 
       <VisitNoteDialog data={noteData} open={open} handleClose={handleClose} />
-      <Fab
-        style={{
-          position: "fixed",
-          bottom: "40px",
-          right: "40px",
-          zIndex: "1000",
-        }}
-        tooltip="HOLA"
-        color="primary"
-        onClick={() => history.push("/notas/nuevaNota")}
-      >
-        <AddIcon />
-      </Fab>
     </Grid>
   );
 }

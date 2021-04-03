@@ -14,6 +14,19 @@ import NuevaNota from './views/NuevaNota';
 import Login from "./views/Login";
 
 import ProtectedRoute from "./components/ProtectedRoute";
+import { createMuiTheme, MuiThemeProvider } from "@material-ui/core";
+
+// Cambiar color primario y secundario
+const theme = createMuiTheme({
+  palette: {
+    primary: {
+      main: '#E21D27',
+    },
+    secondary: {
+      main: '#212529'
+    }
+  }
+});
 
 function App() {
   const [isAuth, setIsAuth] = useState(false);
@@ -25,54 +38,56 @@ function App() {
   }, [isAuth]);
 
   return (
-    <Router>
-      <Switch>
-        <ProtectedRoute
-          authState={[isAuth, setIsAuth]}
-          exact
-          component={Expedients}
-          path="/expedients"
-          title="Expedientes"
-        />
+    <MuiThemeProvider theme={theme}>
+      <Router>
+        <Switch>
+          <ProtectedRoute
+            authState={[isAuth, setIsAuth]}
+            exact
+            component={Expedients}
+            path="/expedients"
+            title="Expedientes"
+          />
 
-        <ProtectedRoute
-          authState={[isAuth, setIsAuth]}
-          exact
-          component={NuevaNota}        
-          path='/notas/nuevaNota'
-          title="Nueva nota de visita"
-        />
+          <ProtectedRoute
+            authState={[isAuth, setIsAuth]}
+            exact
+            component={NuevaNota}
+            path='/notas/nuevaNota/:id_expedient'
+            title="Nueva nota de visita"
+          />
 
-        <ProtectedRoute
-          authState={[isAuth, setIsAuth]}
-          exact
-          component={Notas}        
-          path='/notas'
-          title="Notas de visita"
-        />
+          <ProtectedRoute
+            authState={[isAuth, setIsAuth]}
+            exact
+            component={Notas}
+            path='/notas'
+            title="Notas de visita"
+          />
 
-        <ProtectedRoute
-          authState={[isAuth, setIsAuth]}
-          exact
-          component={Expedient}
-          path="/expedients/:id"
-          title="Expediente"
-        />
+          <ProtectedRoute
+            authState={[isAuth, setIsAuth]}
+            exact
+            component={Expedient}
+            path="/expedients/:id"
+            title="Expediente"
+          />
 
-        <ProtectedRoute
-          authState={[isAuth, setIsAuth]}
-          exact
-          component={CreateExpedient}
-          path="/expedients/create/expedient"
-          title="Nuevo expediente"
-        />
+          <ProtectedRoute
+            authState={[isAuth, setIsAuth]}
+            exact
+            component={CreateExpedient}
+            path="/expedients/create/expedient"
+            title="Nuevo expediente"
+          />
 
-        <Route
-          component={() => <Login authState={[isAuth, setIsAuth]} />}
-          path="/login"
-        />
-      </Switch>
-    </Router>
+          <Route
+            component={() => <Login authState={[isAuth, setIsAuth]} />}
+            path="/login"
+          />
+        </Switch>
+      </Router>
+    </MuiThemeProvider>
   );
 }
 

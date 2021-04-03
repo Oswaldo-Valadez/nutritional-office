@@ -33,3 +33,44 @@ exports.getNote = (req, res) => {
         }
     })
 }
+
+exports.getLastNote = (req, res) => {
+    const { id_expedient } = req.params;
+    const sql = 'SELECT * FROM notes WHERE id_expedient = ? ORDER BY register_date DESC LIMIT 1';
+
+    connection.query(sql, [id_expedient], async (err, results, fields) => {
+        if (err) throw err;
+
+        if (results.length > 0) {
+            res.json({
+                message: 'Success',
+                nota: results[0],
+            })
+        }
+        else {
+            res.json({
+                message: 'No information',
+                nota: null
+            })
+        }
+    })
+}
+
+exports.createNote = (req, res) => {
+    const sql = 'INSERT INTO notes SET ?';
+
+    connection.query(sql, [req.body], async (err, results, fields) => {
+        if (err) throw err;
+
+        if (results) {
+            res.json({
+                message: "Success",
+                result: results
+            });
+        } else {
+            res.json({
+                message: "Failure",
+            });
+        }
+    })
+}

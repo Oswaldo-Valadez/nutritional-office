@@ -8,6 +8,8 @@ import CloseIcon from '@material-ui/icons/Close';
 import Typography from '@material-ui/core/Typography';
 import { Box, Divider } from '@material-ui/core';
 import { dateTimeToDate, getICCResult, getIMCResult } from '../utils/functions';
+import moment from "moment";
+import "moment/locale/es";
 
 const styles = (theme) => ({
     root: {
@@ -61,7 +63,7 @@ export default function VisitNoteDialog({ data, open, handleClose }) {
                                 </Box>
                                 <Box>
                                     <Typography variant='subtitle1'>
-                                        {dateTimeToDate(data.register_date)}
+                                        {moment(data.register_date).format("DD/MM/YYYY")}
                                     </Typography>
                                 </Box>
                             </Box>
