@@ -12,6 +12,7 @@ import NuevaNota from './views/NuevaNota';
 
 //Auth
 import Login from "./views/Login";
+import Inicio from "./views/Inicio";
 
 import ProtectedRoute from "./components/ProtectedRoute";
 
@@ -27,6 +28,14 @@ function App() {
   return (
     <Router>
       <Switch>
+      <ProtectedRoute
+          authState={[isAuth, setIsAuth]}
+          exact
+          component={Inicio}
+          path="/"
+          title="Inicio"
+        />
+
         <ProtectedRoute
           authState={[isAuth, setIsAuth]}
           exact

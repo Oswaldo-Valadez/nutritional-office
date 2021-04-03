@@ -222,6 +222,23 @@ const CardExpedient = ({
       });
   };
 
+  const maritalStatus = ({ marital_status }) => {
+    switch (marital_status) {
+      case 0:
+        return "Soltero";
+      case 1:
+        return "Casado";
+      case 2:
+        return "Divorciado";
+      case 3:
+        return "Viudo";
+      case 4:
+        return "Concubinato";
+      default:
+        return "Soltero";
+    }
+  };
+
   return (
     <Card className={classes.root} variant="outlined">
       <CardHeader
@@ -276,7 +293,7 @@ const CardExpedient = ({
               color="textSecondary"
               component="p"
             >
-              {marital_status}
+              {maritalStatus(marital_status)}
             </Typography>
             <Typography align="center" variant="subtitle2">
               Ocupación

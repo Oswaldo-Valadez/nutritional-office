@@ -13,7 +13,7 @@ import {
   Fab,
   Select,
   Breadcrumbs,
-  Link
+  Link,
 } from "@material-ui/core";
 
 import axios from "../../config/axios";
@@ -44,6 +44,24 @@ const CreateExpedient = () => {
     perinatal_antecedents: "",
     gynecology_obstetrics_antecedents: "",
     pathological_antecedents: "",
+  });
+
+  const [error, setError] = useState({
+    fullname: false,
+    birth_date: false,
+    marital_status: false,
+    gender: false,
+    address: false,
+    phone: false,
+    mobile: false,
+    email: false,
+    occupation: false,
+    register_date: false,
+    inherited_antecedents: false,
+    not_pathological_antecedents: false,
+    perinatal_antecedents: false,
+    gynecology_obstetrics_antecedents: false,
+    pathological_antecedents: false,
   });
 
   const handleCreateExpedient = (e) => {
@@ -87,11 +105,59 @@ const CreateExpedient = () => {
       });
   };
 
+  const validation = (e) => {
+    let aux = false;
+    switch (e.target.name) {
+      case "fullname":
+        if (
+          !/^[a-zA-ZÀ-ÿ]{2,}(?: [a-zA-ZÀ-ÿ]+){0,}$/gm.test(
+            e.target.value.trim()
+          ) ||
+          e.target.value.trim().length > 100
+        )
+          aux = true;
+        break;
+      case "address":
+        break;
+      case "phone":
+        break;
+      case "mobile":
+        break;
+      case "email":
+        break;
+      case "occupation":
+        if (
+          !/^[a-zA-ZÀ-ÿ]{2,}(?: [a-zA-ZÀ-ÿ]+){0,}$/gm.test(
+            e.target.value.trim()
+          ) ||
+          e.target.value.trim().length > 100
+        )
+          aux = true;
+        break;
+      case "inherited_antecedents":
+        break;
+      case "not_pathological_antecedents":
+        break;
+      case "perinatal_antecedents":
+        break;
+      case "gynecology_obstetrics_antecedents":
+        break;
+      case "pathological_antecedents":
+        break;
+    }
+    setError({
+      ...error,
+      [e.target.name]: aux,
+    });
+  };
+
   const handleChange = (e) => {
     setExpedient({
       ...expedient,
       [e.target.name]: e.target.value,
     });
+
+    validation(e);
   };
 
   return (
@@ -122,6 +188,8 @@ const CreateExpedient = () => {
               fullWidth
               id="fullname"
               name="fullname"
+              error={error.fullname}
+              helperText={false}
             />
             <Typography variant="subtitle2">Fecha de nacimiento</Typography>
             <TextField
@@ -247,54 +315,69 @@ const CreateExpedient = () => {
         <Grid item xs={12}>
           <Paper variant="outlined" style={{ padding: "30px" }}>
             <Typography variant="subtitle2">Heredados</Typography>
-            <RichTextEditor
+            <TextField
               value={expedient.inherited_antecedents}
-              onEditorChange={(e) => {
-                setExpedient({
-                  ...expedient,
-                  inherited_antecedents: e,
-                });
-              }}
+              onChange={handleChange}
+              variant="outlined"
+              margin="dense"
+              required
+              fullWidth
+              multiline
+              rows={10}
+              id="inherited_antecedents"
+              name="inherited_antecedents"
             />
             <Typography variant="subtitle2">No patológicos</Typography>
-            <RichTextEditor
+            <TextField
               value={expedient.not_pathological_antecedents}
-              onEditorChange={(e) => {
-                setExpedient({
-                  ...expedient,
-                  not_pathological_antecedents: e,
-                });
-              }}
+              onChange={handleChange}
+              variant="outlined"
+              margin="dense"
+              required
+              fullWidth
+              multiline
+              rows={10}
+              id="not_pathological_antecedents"
+              name="not_pathological_antecedents"
             />
             <Typography variant="subtitle2">Perinatales</Typography>
-            <RichTextEditor
+            <TextField
               value={expedient.perinatal_antecedents}
-              onEditorChange={(e) => {
-                setExpedient({
-                  ...expedient,
-                  perinatal_antecedents: e,
-                });
-              }}
+              onChange={handleChange}
+              variant="outlined"
+              margin="dense"
+              required
+              fullWidth
+              multiline
+              rows={10}
+              id="perinatal_antecedents"
+              name="perinatal_antecedents"
             />
             <Typography variant="subtitle2">Gineco-obstetricos</Typography>
-            <RichTextEditor
+            <TextField
               value={expedient.gynecology_obstetrics_antecedents}
-              onEditorChange={(e) => {
-                setExpedient({
-                  ...expedient,
-                  gynecology_obstetrics_antecedents: e,
-                });
-              }}
+              onChange={handleChange}
+              variant="outlined"
+              margin="dense"
+              required
+              fullWidth
+              multiline
+              rows={10}
+              id="gynecology_obstetrics_antecedents"
+              name="gynecology_obstetrics_antecedents"
             />
             <Typography variant="subtitle2">Patológicos</Typography>
-            <RichTextEditor
+            <TextField
               value={expedient.pathological_antecedents}
-              onEditorChange={(e) => {
-                setExpedient({
-                  ...expedient,
-                  pathological_antecedents: e,
-                });
-              }}
+              onChange={handleChange}
+              variant="outlined"
+              margin="dense"
+              required
+              fullWidth
+              multiline
+              rows={10}
+              id="pathological_antecedents"
+              name="pathological_antecedents"
             />
           </Paper>
         </Grid>

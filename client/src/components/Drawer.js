@@ -29,6 +29,9 @@ import {
   ExitToApp as ExitToAppIcon,
   Info as InfoIcon,
   NewReleases as NewReleasesIcon,
+  Note as NoteIcon,
+  Folder as FolderIcon,
+  Home as HomeIcon
 } from "@material-ui/icons";
 
 function Drawer({ authState, children, title }) {
@@ -133,16 +136,23 @@ function Drawer({ authState, children, title }) {
         <Divider style={{ backgroundColor: "rgba(255,255,255,0.25)" }} />
 
         <List>
+          <ListItem button component={Link} to="/">
+            <ListItemIcon>
+              <HomeIcon style={{ color: "#fff" }} />
+            </ListItemIcon>
+            <ListItemText primary="Inicio" />
+          </ListItem>
+
           <ListItem button component={Link} to="/expedients">
             <ListItemIcon>
-              <InfoIcon style={{ color: "#fff" }} />
+              <FolderIcon style={{ color: "#fff" }} />
             </ListItemIcon>
             <ListItemText primary="Expedientes" />
           </ListItem>
 
           <ListItem button component={Link} to="/notas">
             <ListItemIcon>
-              <NewReleasesIcon style={{ color: "#fff" }} />
+              <NoteIcon style={{ color: "#fff" }} />
             </ListItemIcon>
             <ListItemText primary="Notas de visita" />
           </ListItem>
