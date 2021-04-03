@@ -144,7 +144,7 @@ function Drawer({ authState, children, title }) {
             <ListItemIcon>
               <NewReleasesIcon style={{ color: "#fff" }} />
             </ListItemIcon>
-            <ListItemText primary="Notas" />
+            <ListItemText primary="Notas de visita" />
           </ListItem>
         </List>
       </MuiDrawer>

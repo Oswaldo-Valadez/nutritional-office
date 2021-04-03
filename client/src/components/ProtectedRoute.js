@@ -2,7 +2,7 @@ import React from "react";
 import { Route, Redirect } from "react-router-dom";
 import Drawer from "./Drawer";
 
-function ProtectedRoute({ component: Component, authState, ...rest }) {
+function ProtectedRoute({ component: Component, authState, title, ...rest }) {
   const [isAuth, setIsAuth] = authState;
 
   return (
@@ -10,7 +10,7 @@ function ProtectedRoute({ component: Component, authState, ...rest }) {
       {...rest}
       render={(props) =>
         isAuth ? (
-          <Drawer authState={[isAuth, setIsAuth]}>
+          <Drawer title={title} authState={[isAuth, setIsAuth]}>
             <Component {...props} />
           </Drawer>
         ) : (

@@ -1,11 +1,15 @@
+import React, { useEffect, useState } from "react";
+
 import {
   Breadcrumbs,
   Button,
-  Container,
+  Grid,
   Link,
   Typography,
+  Fab,
 } from "@material-ui/core";
-import React, { useEffect, useState } from "react";
+import { Add as AddIcon } from "@material-ui/icons";
+
 import Datatable from "../components/Datatable";
 import VisitNoteDialog from "../components/VisitNoteDialog";
 import axios from "../config/axios";
@@ -54,35 +58,39 @@ function Notas() {
   };
 
   return (
-    <Container>
-      <center>
-        <Typography variant="h4" style={{ marginTop: 20, marginBottom: 30 }}>
-          Notas de visita
-        </Typography>
-      </center>
+    <Grid container spacing={3}>
+      <Grid item xs={12}>
+        <Breadcrumbs aria-label="breadcrumb">
+          <Link color="inherit" href="/">
+            Inicio
+          </Link>
+          <Typography color="textPrimary">Notas de visita</Typography>
+        </Breadcrumbs>
+      </Grid>
 
-      <Breadcrumbs aria-label="breadcrumb" style={{ marginBottom: 20 }}>
-        <Link color="inherit" href="/">
-          Inicio
-        </Link>
-        <Typography color="textPrimary">Notas de visita</Typography>
-      </Breadcrumbs>
+      <Grid item xs={12}>
+        <Datatable
+          data={data}
+          title="Notas de visita"
+          onRowClick={(rowData) => getNoteData(rowData[0], rowData[1])}
+        />
+      </Grid>
 
-      <Button
+      <VisitNoteDialog data={noteData} open={open} handleClose={handleClose} />
+      <Fab
+        style={{
+          position: "fixed",
+          bottom: "40px",
+          right: "40px",
+          zIndex: "1000",
+        }}
+        tooltip="HOLA"
         color="primary"
-        variant="contained"
-        style={{ marginBottom: 20 }}
         onClick={() => history.push("/notas/nuevaNota")}
       >
-        Nueva nota de visita
-      </Button>
-      <Datatable
-        data={data}
-        title="Notas de visita"
-        onRowClick={(rowData) => getNoteData(rowData[0], rowData[1])}
-      />
-      <VisitNoteDialog data={noteData} open={open} handleClose={handleClose} />
-    </Container>
+        <AddIcon />
+      </Fab>
+    </Grid>
   );
 }
 

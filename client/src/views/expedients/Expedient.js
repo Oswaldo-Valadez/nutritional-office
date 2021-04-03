@@ -6,6 +6,8 @@ import "react-toastify/dist/ReactToastify.css";
 
 import {
   Avatar,
+  Breadcrumbs,
+  Link,
   Divider,
   Grid,
   Card,
@@ -95,9 +97,20 @@ const Expedient = () => {
   return isLoading ? (
     <Loading />
   ) : (
-    <Grid container spacing={5}>
+    <Grid container spacing={3}>
       <CssBaseline />
       <ToastContainer newestOnTop={false} rtl={false} />
+      <Grid item xs={12}>
+        <Breadcrumbs aria-label="breadcrumb">
+          <Link color="inherit" href="/">
+            Inicio
+          </Link>
+          <Link color="inherit" href="/">
+            Expedientes
+          </Link>
+          <Typography color="textPrimary">Expediente</Typography>
+        </Breadcrumbs>
+      </Grid>
       <Grid item xs={6}>
         <Paper variant="outlined" style={{ padding: "30px" }}>
           <Typography variant="subtitle2">Nombre completo</Typography>

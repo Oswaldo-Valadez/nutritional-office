@@ -32,6 +32,7 @@ function App() {
           exact
           component={Expedients}
           path="/expedients"
+          title="Expedientes"
         />
 
         <ProtectedRoute
@@ -39,6 +40,7 @@ function App() {
           exact
           component={NuevaNota}        
           path='/notas/nuevaNota'
+          title="Nueva nota de visita"
         />
 
         <ProtectedRoute
@@ -46,6 +48,7 @@ function App() {
           exact
           component={Notas}        
           path='/notas'
+          title="Notas de visita"
         />
 
         <ProtectedRoute
@@ -53,6 +56,7 @@ function App() {
           exact
           component={Expedient}
           path="/expedients/:id"
+          title="Expediente"
         />
 
         <ProtectedRoute
@@ -60,6 +64,7 @@ function App() {
           exact
           component={CreateExpedient}
           path="/expedients/create/expedient"
+          title="Nuevo expediente"
         />
 
         <Route

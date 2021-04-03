@@ -6,18 +6,20 @@ import "react-toastify/dist/ReactToastify.css";
 
 import {
   Avatar,
-  Divider,
-  Grid,
+  Breadcrumbs,
+  Button,
   Card,
   CardContent,
   CardHeader,
   CardActions,
-  IconButton,
-  Button,
   Collapse,
-  Typography,
   CssBaseline,
+  Divider,
   Fab,
+  Grid,
+  IconButton,
+  Typography,
+  Link,
 } from "@material-ui/core";
 
 import { makeStyles } from "@material-ui/core/styles";
@@ -94,7 +96,7 @@ const Expedients = () => {
   return isLoading ? (
     <Loading />
   ) : (
-    <Grid container spacing={2}>
+    <Grid container spacing={3}>
       <CssBaseline />
       <ToastContainer
         position="top-cen"
@@ -108,9 +110,12 @@ const Expedients = () => {
         pauseOnHover
       />
       <Grid item xs={12}>
-        <Typography variant="h3">Expedientes</Typography>
-        <Divider />
-        <Button />
+        <Breadcrumbs aria-label="breadcrumb" style={{ marginBottom: 0 }}>
+          <Link color="inherit" href="/">
+            Inicio
+          </Link>
+          <Typography color="textPrimary">Expedientes</Typography>
+        </Breadcrumbs>
       </Grid>
       {expedients.map((data) => (
         <Grid item xs={4}>
@@ -128,6 +133,7 @@ const Expedients = () => {
           right: "40px",
           zIndex: "1000",
         }}
+        tooltip="HOLA"
         color="primary"
         onClick={handleCreateExpedient}
       >
@@ -223,7 +229,10 @@ const CardExpedient = ({
           <Avatar aria-label="recipe" className={classes.avatar}></Avatar>
         }
         action={
-          <IconButton onClick={handleView} aria-label="Crear nota">
+          <IconButton
+            onClick={() => history.push("/notas/nuevaNota")}
+            aria-label="Crear nota"
+          >
             <AddIcon />
           </IconButton>
         }
