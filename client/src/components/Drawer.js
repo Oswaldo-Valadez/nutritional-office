@@ -115,7 +115,6 @@ function Drawer({ authState, children, title }) {
         <div className={classes.toolbar}>
           <Typography variant="h6">
             <Avatar
-              style={{ backgroundColor: "red" }}
               alt=""
               src="./imgs/logo.png"
               onClick={() => {

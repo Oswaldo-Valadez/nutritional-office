@@ -27,14 +27,14 @@ const colors = {
 };
 
 const styles = {
-  primary: colors.red,
+  primary: "#00a65a",
   secondary: colors.gray_900,
   success: colors.green,
   info: colors.blue,
   warning: colors.yellow,
   danger: colors.red,
   light: colors.gray_100,
-  dark: colors.gray_900,
+  dark: "#222d32",
 };
 
 export default styles;

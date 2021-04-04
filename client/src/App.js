@@ -16,15 +16,23 @@ import Inicio from "./views/Inicio";
 
 import ProtectedRoute from "./components/ProtectedRoute";
 import { createMuiTheme, MuiThemeProvider } from "@material-ui/core";
+import styles from "./config/styles";
 
 // Cambiar color primario y secundario
 const theme = createMuiTheme({
   palette: {
     primary: {
-      main: "#E21D27",
+      main: styles.primary,
     },
     secondary: {
-      main: "#212529",
+      main: styles.secondary,
+    },
+  },
+  overrides: {
+    MuiAvatar: {
+      colorDefault: {
+        backgroundColor: styles.primary,
+      },
     },
   },
 });
