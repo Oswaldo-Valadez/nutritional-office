@@ -20,6 +20,8 @@ import {
   IconButton,
   Typography,
   Link,
+  InputAdornment,
+  TextField,
 } from "@material-ui/core";
 
 import { makeStyles } from "@material-ui/core/styles";
@@ -41,11 +43,13 @@ import {
   Visibility as VisibilityIcon,
   Add as AddIcon,
   Done as DoneIcon,
+  Search as SearchIcon,
 } from "@material-ui/icons";
 
 const Expedients = () => {
   const [isLoading, setIsLoading] = useState(true);
   const [expedients, setExpedients] = useState([]);
+  const [renderExpedients, setRenderExpedients] = useState([]);
 
   const history = useHistory();
 
@@ -59,6 +63,7 @@ const Expedients = () => {
         if (result.message === "Success") {
           // Credenciales correctas
           setExpedients(result.expedients);
+          setRenderExpedients(result.expedients);
           toast.success("Se han cargado todos los expedientes.", {
             position: "top-right",
             autoClose: 2000,
@@ -117,7 +122,7 @@ const Expedients = () => {
           <Typography color="textPrimary">Expedientes</Typography>
         </Breadcrumbs>
       </Grid>
-      {expedients.map((data) => (
+      {renderExpedients.map((data) => (
         <Grid item xs={4}>
           <CardExpedient
             expedientsState={[expedients, setExpedients]}
@@ -139,6 +144,31 @@ const Expedients = () => {
       >
         <AddIcon />
       </Fab>
+      <TextField
+        style={{
+          position: "fixed",
+          bottom: "40px",
+          right: "120px",
+          zIndex: "1000",
+        }}
+        variant="outlined"
+        margin="dense"
+        id="filter"
+        name="filter"
+        onChangeCapture={(e) => {
+          const arr = expedients.filter((row) =>
+            row.fullname.toLowerCase().includes(e.target.value.toLowerCase())
+          );
+          setRenderExpedients(arr);
+        }}
+        InputProps={{
+          startAdornment: (
+            <InputAdornment position="start">
+              <SearchIcon />
+            </InputAdornment>
+          ),
+        }}
+      />
     </Grid>
   );
 };

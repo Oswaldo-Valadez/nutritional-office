@@ -16,7 +16,6 @@ exports.postExpedient = (req, res) => {
       });
     }
   });
-  console.log(response)
 };
 
 exports.getExpedients = (req, res) => {
@@ -63,7 +62,7 @@ exports.putExpedient = (req, res) => {
   delete req.body.id_expedient;
   delete req.body.register_date;
 
-  const test = connection.query(
+  const response = connection.query(
     sql,
     [{...req.body}, req.params.id],
     async (err, results, fields) => {
@@ -81,8 +80,6 @@ exports.putExpedient = (req, res) => {
       }
     }
   );
-
-  console.log(test)
 };
 
 exports.deleteExpedient = (req, res) => {
