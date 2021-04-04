@@ -50,10 +50,7 @@ const FloatingActions = ({
             right: "128px",
             zIndex: "1000",
           }}
-          onClick={() => {
-            onSave();
-            onClick[0]();
-          }}
+          type="submit"
           color="secondary"
         >
           <SaveIcon />
@@ -70,6 +67,7 @@ const FloatingActions = ({
       }}
       onClick={onClick}
       color="primary"
+      component="input"
     >
       <DoneIcon />
     </Fab>

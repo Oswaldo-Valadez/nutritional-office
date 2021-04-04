@@ -192,7 +192,7 @@ const CreateExpedient = () => {
   };
 
   return (
-    <form autoComplete="new-password" onSubmit={handleCreateExpedient}>
+    <form onSubmit={handleCreateExpedient}>
       <Grid container spacing={3}>
         <CssBaseline />
         <ToastContainer newestOnTop={false} rtl={false} />

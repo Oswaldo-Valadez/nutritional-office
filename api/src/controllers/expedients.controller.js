@@ -3,7 +3,7 @@ const connection = require("../config/connection");
 exports.postExpedient = (req, res) => {
   const sql = "INSERT INTO expedients SET ?";
 
-  connection.query(sql, [req.body], async (err, results, fields) => {
+  const response = connection.query(sql, [req.body], async (err, results, fields) => {
     if (err) throw err;
 
     if (results) {
@@ -16,6 +16,7 @@ exports.postExpedient = (req, res) => {
       });
     }
   });
+  console.log(response)
 };
 
 exports.getExpedients = (req, res) => {
@@ -57,21 +58,31 @@ exports.getExpedient = (req, res) => {
 };
 
 exports.putExpedient = (req, res) => {
-  const sql = "UPDATE FROM expedients WHERE id_expedient = ?";
+  const sql = "UPDATE expedients SET ? WHERE id_expedient = ?";
 
-  connection.query(sql, [req.params.id], async (err, results, fields) => {
-    if (err) throw err;
+  delete req.body.id_expedient;
+  delete req.body.register_date;
 
-    if (results) {
-      res.json({
-        message: "Success",
-      });
-    } else {
-      res.json({
-        message: "Failure",
-      });
+  const test = connection.query(
+    sql,
+    [{...req.body}, req.params.id],
+    async (err, results, fields) => {
+      if (err) throw err;
+      console.log(err, results, fields);
+
+      if (results) {
+        res.json({
+          message: "Success",
+        });
+      } else {
+        res.json({
+          message: "Failure",
+        });
+      }
     }
-  });
+  );
+
+  console.log(test)
 };
 
 exports.deleteExpedient = (req, res) => {
