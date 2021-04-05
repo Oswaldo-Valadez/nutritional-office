@@ -99,7 +99,7 @@ const Expedient = () => {
   const handleCreateExpedient = (e) => {
     e.preventDefault();
 
-    setEdit(!desableEdit)
+    setEdit(!desableEdit);
 
     if (Object.values(error).includes(true)) {
       toast.error("No has llenado correctamente todos los campos.", {
@@ -154,11 +154,12 @@ const Expedient = () => {
 
       if (result.message === "Success") {
         // Credenciales correctas
+        result.expedient.birth_date = moment(
+          result.expedient.register_date
+        ).format("YYYY-MM-DD");
+
         setExpedient(result.expedient);
-        setExpedient({
-          ...expedient,
-          birth_date: moment(result.expedient.register_date).format("YYYY-MM-DD")
-        });
+
         toast.success("Expediente cargado correctamente.", {
           position: "top-right",
           autoClose: 2000,
@@ -235,7 +236,7 @@ const Expedient = () => {
         if (e.target.value.trim() == "") aux = true;
         break;
       case "gynecology_obstetrics_antecedents":
-        if (e.target.value.trim() == "") aux = true;
+        if (e.target.value.trim() == "" && expedient.gender != 0) aux = true;
         break;
       case "pathological_antecedents":
         if (e.target.value.trim() == "") aux = true;
@@ -555,27 +556,29 @@ const Expedient = () => {
                 }
               />
             </Grid>
-            <Grid item xs={12} sm={6}>
-              <TextField
-                value={expedient.gynecology_obstetrics_antecedents}
-                onChange={handleChange}
-                disabled={desableEdit}
-                label="Gineco-obstetricos"
-                variant="outlined"
-                required
-                fullWidth
-                multiline
-                rows={10}
-                id="gynecology_obstetrics_antecedents"
-                name="gynecology_obstetrics_antecedents"
-                error={error.gynecology_obstetrics_antecedents}
-                helperText={
-                  error.gynecology_obstetrics_antecedents
-                    ? "Antecedentes gineco-obstetricos incorrectos"
-                    : null
-                }
-              />
-            </Grid>
+            {expedient.gender == 0 ? null : (
+              <Grid item xs={12} sm={6}>
+                <TextField
+                  value={expedient.gynecology_obstetrics_antecedents}
+                  onChange={handleChange}
+                  disabled={desableEdit}
+                  label="Gineco-obstetricos"
+                  variant="outlined"
+                  required
+                  fullWidth
+                  multiline
+                  rows={10}
+                  id="gynecology_obstetrics_antecedents"
+                  name="gynecology_obstetrics_antecedents"
+                  error={error.gynecology_obstetrics_antecedents}
+                  helperText={
+                    error.gynecology_obstetrics_antecedents
+                      ? "Antecedentes gineco-obstetricos incorrectos"
+                      : null
+                  }
+                />
+              </Grid>
+            )}
             <Grid item xs={12} sm={6}>
               <TextField
                 value={expedient.pathological_antecedents}

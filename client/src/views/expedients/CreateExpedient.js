@@ -170,7 +170,7 @@ const CreateExpedient = () => {
         if (e.target.value.trim() == "") aux = true;
         break;
       case "gynecology_obstetrics_antecedents":
-        if (e.target.value.trim() == "") aux = true;
+        if (e.target.value.trim() == "" && expedient.gender != 0) aux = true;
         break;
       case "pathological_antecedents":
         if (e.target.value.trim() == "") aux = true;
@@ -474,25 +474,29 @@ const CreateExpedient = () => {
                 }
               />
             </Grid>
-            <Grid item xs={12} sm={6}>
-              <TextField
-                value={expedient.gynecology_obstetrics_antecedents}
-                onChange={handleChange}
-                label="Gineco-obstetricos"
-                variant="outlined"
-                fullWidth
-                multiline
-                rows={10}
-                id="gynecology_obstetrics_antecedents"
-                name="gynecology_obstetrics_antecedents"
-                error={error.gynecology_obstetrics_antecedents}
-                helperText={
-                  error.gynecology_obstetrics_antecedents
-                    ? "Antecedentes gineco-obstetricos incorrectos"
-                    : null
-                }
-              />
-            </Grid>
+            {expedient.gender == 0 ? null : (
+              <Grid item xs={12} sm={6}>
+                <TextField
+                  value={expedient.gynecology_obstetrics_antecedents}
+                  onChange={handleChange}
+                  label="Gineco-obstetricos"
+                  variant="outlined"
+                  required
+                  fullWidth
+                  multiline
+                  rows={10}
+                  id="gynecology_obstetrics_antecedents"
+                  name="gynecology_obstetrics_antecedents"
+                  error={error.gynecology_obstetrics_antecedents}
+                  helperText={
+                    error.gynecology_obstetrics_antecedents
+                      ? "Antecedentes gineco-obstetricos incorrectos"
+                      : null
+                  }
+                />
+              </Grid>
+            )}
+
             <Grid item xs={12} sm={6}>
               <TextField
                 value={expedient.pathological_antecedents}

@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, Fragment } from "react";
 import { useHistory } from "react-router-dom";
 
 import { ToastContainer, toast } from "react-toastify";
@@ -86,6 +86,10 @@ const Expedients = () => {
         console.log(err);
       });
   }, []);
+
+  useEffect(() => {
+    setRenderExpedients(expedients);
+  }, [expedients]);
 
   const handleCreateExpedient = () => {
     history.push("/expedients/create/expedient");
@@ -402,8 +406,15 @@ const CardExpedient = ({
           <Typography paragraph>{not_pathological_antecedents}</Typography>
           <Typography variant="subtitle2">Perinatales</Typography>
           <Typography paragraph>{perinatal_antecedents}</Typography>
-          <Typography variant="subtitle2">Gineco-obstétricos</Typography>
-          <Typography paragraph>{gynecology_obstetrics_antecedents}</Typography>
+          {!gender ? null : (
+            <Fragment>
+              <Typography variant="subtitle2">Gineco-obstétricos</Typography>
+              <Typography paragraph>
+                {gynecology_obstetrics_antecedents}
+              </Typography>
+            </Fragment>
+          )}
+
           <Typography variant="subtitle2">Patológicos</Typography>
           <Typography paragraph>{pathological_antecedents}</Typography>
         </CardContent>
