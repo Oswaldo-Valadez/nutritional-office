@@ -102,8 +102,12 @@ function NuevaNota() {
   }, [formulario.cintura, formulario.cadera]);
 
   const handleChange = (e) => {
+
     const { name, value } = e.target;
-    setFormulario({ ...formulario, [name]: value });
+    if (name === "anotaciones") setFormulario({ ...formulario, [name]: value });
+    else if (value > 0 || value === "") {
+      setFormulario({ ...formulario, [name]: value });
+    }
   };
 
   const handleSubmit = (e) => {

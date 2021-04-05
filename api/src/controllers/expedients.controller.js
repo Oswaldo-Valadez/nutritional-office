@@ -19,7 +19,7 @@ exports.postExpedient = (req, res) => {
 };
 
 exports.getExpedients = (req, res) => {
-  const sql = "SELECT * FROM expedients";
+  const sql = "SELECT * FROM expedients ORDER BY fullname";
 
   connection.query(sql, async (err, results, fields) => {
     if (err) throw err;

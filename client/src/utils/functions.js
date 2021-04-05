@@ -1,8 +1,3 @@
-export function dateTimeToDate(date) {
-    let originalDate = new Date(date);
-    return originalDate.toLocaleDateString('es-MX');
-}
-
 export function calcIMC(peso, talla) {
     let IMC = peso / Math.pow(talla, 2);
     let resultado;

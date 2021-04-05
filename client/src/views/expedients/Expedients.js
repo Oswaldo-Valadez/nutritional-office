@@ -1,5 +1,5 @@
-import React, { Fragment, useState, useEffect } from "react";
-import { useHistory, useParams } from "react-router-dom";
+import React, { useState, useEffect } from "react";
+import { useHistory } from "react-router-dom";
 
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
@@ -7,14 +7,12 @@ import "react-toastify/dist/ReactToastify.css";
 import {
   Avatar,
   Breadcrumbs,
-  Button,
   Card,
   CardContent,
   CardHeader,
   CardActions,
   Collapse,
   CssBaseline,
-  Divider,
   Fab,
   Grid,
   IconButton,
@@ -33,16 +31,11 @@ import clsx from "clsx";
 import moment from "moment";
 import "moment/locale/es";
 
-import CardMedia from "@material-ui/core/CardMedia";
-import { red } from "@material-ui/core/colors";
-
 import {
   Delete as DeleteIcon,
-  Edit as EditIcon,
   ExpandMore as ExpandMoreIcon,
   Visibility as VisibilityIcon,
   Add as AddIcon,
-  Done as DoneIcon,
   Search as SearchIcon,
 } from "@material-ui/icons";
 
@@ -122,6 +115,27 @@ const Expedients = () => {
           <Typography color="textPrimary">Expedientes</Typography>
         </Breadcrumbs>
       </Grid>
+      <Grid item xs={12}>
+        <TextField
+          variant="outlined"
+          margin="dense"
+          id="filter"
+          name="filter"
+          onChangeCapture={(e) => {
+            const arr = expedients.filter((row) =>
+              row.fullname.toLowerCase().includes(e.target.value.toLowerCase())
+            );
+            setRenderExpedients(arr);
+          }}
+          InputProps={{
+            startAdornment: (
+              <InputAdornment position="start">
+                <SearchIcon />
+              </InputAdornment>
+            ),
+          }}
+        />
+      </Grid>
       {renderExpedients.map((data) => (
         <Grid item xs={4}>
           <CardExpedient
@@ -144,31 +158,6 @@ const Expedients = () => {
       >
         <AddIcon />
       </Fab>
-      <TextField
-        style={{
-          position: "fixed",
-          bottom: "40px",
-          right: "120px",
-          zIndex: "1000",
-        }}
-        variant="outlined"
-        margin="dense"
-        id="filter"
-        name="filter"
-        onChangeCapture={(e) => {
-          const arr = expedients.filter((row) =>
-            row.fullname.toLowerCase().includes(e.target.value.toLowerCase())
-          );
-          setRenderExpedients(arr);
-        }}
-        InputProps={{
-          startAdornment: (
-            <InputAdornment position="start">
-              <SearchIcon />
-            </InputAdornment>
-          ),
-        }}
-      />
     </Grid>
   );
 };

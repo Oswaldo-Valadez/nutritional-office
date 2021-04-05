@@ -340,7 +340,6 @@ const CreateExpedient = () => {
                 onChange={handleChange}
                 label="Teléfono celular"
                 variant="outlined"
-                required
                 fullWidth
                 id="mobile"
                 name="mobile"
@@ -355,7 +354,6 @@ const CreateExpedient = () => {
                 onChange={handleChange}
                 label="Teléfono fíjo"
                 variant="outlined"
-                required
                 fullWidth
                 id="phone"
                 name="phone"
@@ -482,7 +480,6 @@ const CreateExpedient = () => {
                 onChange={handleChange}
                 label="Gineco-obstetricos"
                 variant="outlined"
-                required
                 fullWidth
                 multiline
                 rows={10}
