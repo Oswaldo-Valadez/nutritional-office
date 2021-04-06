@@ -102,7 +102,6 @@ function NuevaNota() {
   }, [formulario.cintura, formulario.cadera]);
 
   const handleChange = (e) => {
-
     const { name, value } = e.target;
     if (name === "anotaciones") setFormulario({ ...formulario, [name]: value });
     else if (value > 0 || value === "") {
@@ -155,7 +154,7 @@ function NuevaNota() {
       {isLoading ? (
         <Loading />
       ) : (
-        <form>
+        <form onSubmit={handleSubmit}>
           <ToastContainer
             position="top-cen"
             autoClose={4000}
@@ -367,7 +366,6 @@ function NuevaNota() {
               }}
               color="primary"
               type="submit"
-              onClick={handleSubmit}
             >
               <DoneIcon />
             </Fab>
