@@ -245,7 +245,8 @@ const CardExpedient = ({
       });
   };
 
-  const maritalStatus = ({ marital_status }) => {
+  const maritalStatus = () => {
+    console.log(marital_status);
     switch (marital_status) {
       case 0:
         return "Soltero";
@@ -316,7 +317,7 @@ const CardExpedient = ({
               color="textSecondary"
               component="p"
             >
-              {maritalStatus(marital_status)}
+              {maritalStatus()}
             </Typography>
             <Typography align="center" variant="subtitle2">
               Ocupación
